@@ -3,6 +3,7 @@
 #include "src/commandLineUtility/CommandLine.h"
 #include "src/exception/BadCommit.h"
 #include "src/indexer/LibraryIndexer.h"
+#include "src/fileHelper/FileHelper.h"
 
 int main(int argc, char** argv)
 {
@@ -18,6 +19,7 @@ int main(int argc, char** argv)
     case COMMAND_TYPE::INDEX: {
         FileAnalyzer fileAnalyzer(commendUtility.getContext());
         LibraryIndexer inversedIndex{fileAnalyzer};
+        FileHelper::serialize(inversedIndex.getInversedIndex(), CommandLine::m_IndexedFile);
     }
         break;
     case COMMAND_TYPE::SEARCH:

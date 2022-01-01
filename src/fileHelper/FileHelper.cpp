@@ -19,3 +19,16 @@ std::ofstream FileHelper::openWriteFile(const std::string& fileName)
         throw std::runtime_error{"file: "+fileName+" cannot created"};
     return ofs;
 }
+
+void
+FileHelper::serialize(const std::unordered_map<std::string, std::map<std::string, int>>& indexedMap, std::string outTxt)
+{
+    auto outputFileWriter = openWriteFile(outTxt);
+    char delimeter = '|';
+    for (const auto&[word, innermap]: indexedMap) {
+        outputFileWriter << word << " ";
+        for (const auto&[txtfile, count]: innermap)
+            outputFileWriter << txtfile << "(" << count << ")" << delimeter;
+        outputFileWriter << "\n";
+    }
+}
