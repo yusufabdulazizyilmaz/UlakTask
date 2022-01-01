@@ -2,6 +2,7 @@
 #include "src/fileAnalyzer/FileAnalyzer.h"
 #include "src/commandLineUtility/CommandLine.h"
 #include "src/exception/BadCommit.h"
+#include "src/indexer/LibraryIndexer.h"
 
 int main(int argc, char** argv)
 {
@@ -16,6 +17,7 @@ int main(int argc, char** argv)
     switch (commendUtility.getCommand()) {
     case COMMAND_TYPE::INDEX: {
         FileAnalyzer fileAnalyzer(commendUtility.getContext());
+        LibraryIndexer inversedIndex{fileAnalyzer};
     }
         break;
     case COMMAND_TYPE::SEARCH:
