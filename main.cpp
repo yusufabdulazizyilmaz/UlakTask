@@ -1,10 +1,10 @@
 #include <iostream>
-#include "src/fileAnalyzer/FileAnalyzer.h"
-#include "src/commandLineUtility/CommandLine.h"
-#include "src/exception/BadCommit.h"
-#include "src/indexer/LibraryIndexer.h"
-#include "src/fileHelper/FileHelper.h"
-#include "src/searcher/LibrarySearcher.h"
+#include "ulak/src/fileAnalyzer/FileAnalyzer.h"
+#include "ulak/src/commandLineUtility/CommandLine.h"
+#include "ulak/src/exception/BadCommit.h"
+#include "ulak/src/indexer/LibraryIndexer.h"
+#include "ulak/src/fileHelper/FileHelper.h"
+#include "ulak/src/searcher/LibrarySearcher.h"
 
 int main(int argc, char** argv)
 {

@@ -2,19 +2,13 @@ cmake_minimum_required(VERSION 3.21)
 project(ulak)
 
 set(CMAKE_CXX_STANDARD 17)
-set(HEADERS
-        src/fileAnalyzer/FileAnalyzer.h
-        src/commandLineUtility/CommandLine.h
-        src/exception/BadCommit.h
-        src/indexer/LibraryIndexer.h
-        src/fileHelper/FileHelper.h)
-set(SOURCES
-        main.cpp
-        src/fileAnalyzer/FileAnalyzer.cpp
-        src/commandLineUtility/CommandLine.cpp
-        src/exception/BadCommit.cpp
-        src/indexer/LibraryIndexer.cpp
-        src/fileHelper/FileHelper.cpp src/searcher/LibrarySearcher.cpp src/searcher/LibrarySearcher.h)
 
-add_executable(${PROJECT_NAME}
-        ${SOURCES} ${HEADERS})
+set(SOURCES main.cpp)
+
+add_executable(ulak_run ${SOURCES})
+
+include_directories(ulak)
+add_subdirectory(ulak)
+
+target_link_libraries(ulak_run ulak)
+add_subdirectory(Google_tests)
