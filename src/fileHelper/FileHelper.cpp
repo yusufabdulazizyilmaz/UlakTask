@@ -32,3 +32,13 @@ FileHelper::serialize(const std::unordered_map<std::string, std::map<std::string
         outputFileWriter << "\n";
     }
 }
+
+std::unordered_map<std::string, std::string> FileHelper::deSerialize(std::string outTxt)
+{
+    auto ifs = openReadFile(outTxt);
+    std::string word, innermap;
+    std::unordered_map<std::string, std::string> retUnorderedMap;
+    while (ifs >> word >> innermap)
+        retUnorderedMap[word] = std::move(innermap);
+    return retUnorderedMap;
+}

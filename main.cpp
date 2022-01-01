@@ -4,6 +4,7 @@
 #include "src/exception/BadCommit.h"
 #include "src/indexer/LibraryIndexer.h"
 #include "src/fileHelper/FileHelper.h"
+#include "src/searcher/LibrarySearcher.h"
 
 int main(int argc, char** argv)
 {
@@ -23,9 +24,8 @@ int main(int argc, char** argv)
     }
         break;
     case COMMAND_TYPE::SEARCH:
-        std::cout << "search";
+        LibrarySearcher{commendUtility.getContext(), CommandLine::m_IndexedFile};
         break;
     }
-
     return 0;
 }

@@ -14,7 +14,7 @@ set(SOURCES
         src/commandLineUtility/CommandLine.cpp
         src/exception/BadCommit.cpp
         src/indexer/LibraryIndexer.cpp
-        src/fileHelper/FileHelper.cpp)
+        src/fileHelper/FileHelper.cpp src/searcher/LibrarySearcher.cpp src/searcher/LibrarySearcher.h)
 
 add_executable(${PROJECT_NAME}
         ${SOURCES} ${HEADERS})

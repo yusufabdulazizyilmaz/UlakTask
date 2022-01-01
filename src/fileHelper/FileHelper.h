@@ -17,6 +17,8 @@ public:
 
     static void
     serialize(const std::unordered_map<std::string, std::map<std::string, int>>& indexedMap, std::string outTxt);
+
+    static std::unordered_map<std::string, std::string> deSerialize(std::string outTxt);
 };
 
 #endif //ULAK_FILEHELPER_H
