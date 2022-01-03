@@ -6,9 +6,8 @@
 
 struct FileAnalyzerTest : public testing::Test {
     std::unique_ptr<FileAnalyzer> fileAnalyzer_uptr;
-
     FileAnalyzerTest()
-            :fileAnalyzer_uptr(new FileAnalyzer("C:\\Users\\SPAK\\UlakTask\\data\\testtxt")) { }
+            :fileAnalyzer_uptr(new FileAnalyzer("/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt")) { }
 };
 
 TEST_F(FileAnalyzerTest, getlibrary)
@@ -16,15 +15,37 @@ TEST_F(FileAnalyzerTest, getlibrary)
     // Act
     std::string value = fileAnalyzer_uptr->getLibrary();
     // Assert
-    EXPECT_STREQ(value.c_str(), "C:\\Users\\SPAK\\UlakTask\\data\\testtxt");
+    ASSERT_STREQ(value.c_str(), "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt");
 }
 
-TEST(basic_check, increment_by_10)
+TEST_F(FileAnalyzerTest, getTxtVector)
 {
-    int value = 100;
-    int increment = 10;
+    // Act
+    std::vector<std::string> expectedVec{"/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a1/a2.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a1/a3.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a1/za1.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a1/za4.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a1.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a2/a1.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a2/a2.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a2/a21/a1.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a2/a21/a2.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a2/a21/a3.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a2/a21/a4.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a2/a3.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a2/a4.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a3/a1.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a3/a2.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a3/a3.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a3/a4.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a3.txt",
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a4.txt"};
 
-    value += increment;
-    ASSERT_EQ(value, 110);
+    auto txtFileVec = fileAnalyzer_uptr->getTxtFileVec();
+    sort(begin(txtFileVec),end(txtFileVec));
+    std::vector<std::string> results;
+    transform(begin(txtFileVec),end(txtFileVec), std::back_inserter(results),[](const auto &path){return path.string();});
+    // Assert
+    EXPECT_TRUE(std::equal(begin(results), end(results), begin(expectedVec), end(expectedVec)));
 }
 
