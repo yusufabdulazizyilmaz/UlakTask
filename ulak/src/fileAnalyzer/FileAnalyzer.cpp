@@ -3,6 +3,7 @@
 //
 
 #include "FileAnalyzer.h"
+#include <algorithm>
 
 FileAnalyzer::FileAnalyzer(std::string library)
         :m_library(std::move(library))
