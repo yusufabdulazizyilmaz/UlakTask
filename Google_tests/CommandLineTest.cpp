@@ -21,7 +21,9 @@ TEST(CommandLineTestParse, not3argument2)
 
 TEST(CommandLineTestParse, valid3argument)
 {
-    char* argg[3] = {"cli", "-index", "C:\\Users\\SPAK\\UlakTask\\data\\testtxt"};
+    std::stringstream ss;
+    ss << ROOT_PATH << std::filesystem::path::preferred_separator << "data" << std::filesystem::path::preferred_separator << "testtxt";
+    char* argg[3] = {"cli", "-index" ,strdup(ss.str().c_str())};
     std::unique_ptr<CommandLine> commandLine_uptr{new CommandLine(3, argg)};
     EXPECT_NO_THROW(commandLine_uptr->parse());
 }
@@ -42,31 +44,38 @@ TEST(CommandLineTestParse, ValidCommand)
 
 TEST(CommandLineTestParse, notDirectory)
 {
-    char* argg[3] = {"cli", "-index", "C:\\Users\\SPAK\\UlakTask\\data\\testtxt\\a1.txt"};
+    std::stringstream ss;
+    ss << ROOT_PATH << std::filesystem::path::preferred_separator << "data" << std::filesystem::path::preferred_separator << "testtxt" << std::filesystem::path::preferred_separator << "a1.txt";
+    char* argg[3] = {"cli", "-index" ,strdup(ss.str().c_str())};
     std::unique_ptr<CommandLine> commandLine_uptr{new CommandLine(3, argg)};
     EXPECT_THROW(commandLine_uptr->parse(), BadCommit);
 }
 
 TEST(CommandLineTestParse, validDirectory)
 {
-    char* argg[3] = {"cli", "-index", "C:\\Users\\SPAK\\UlakTask\\data\\testtxt"};
+    std::stringstream ss;
+    ss << ROOT_PATH << std::filesystem::path::preferred_separator << "data" << std::filesystem::path::preferred_separator << "testtxt";
+    char* argg[3] = {"cli", "-index" ,strdup(ss.str().c_str())};
     std::unique_ptr<CommandLine> commandLine_uptr{new CommandLine(3, argg)};
     EXPECT_NO_THROW(commandLine_uptr->parse());
 }
 
 TEST(CommandLineTestParse, validExistIndexedTxt)
 {
-    char* argg[3] = {"cli", "-search",
-                     "C:\\Users\\SPAK\\UlakTask\\data\\invertedIndex.txt"};
+    std::stringstream ss;
+    ss << std::filesystem::current_path().string() << std::filesystem::path::preferred_separator << "invertedIndex.txt";
+    char* argg[3] = {"cli", "-search", strdup(ss.str().c_str())};
     std::unique_ptr<CommandLine> commandLine_uptr{new CommandLine(3, argg)};
     EXPECT_NO_THROW(commandLine_uptr->parse());
 }
 
 TEST(CommandLineTestParse, getContext)
 {
-    char* argg[3] = {"cli", "-index", "C:\\Users\\SPAK\\UlakTask\\data\\testtxt"};
+    std::stringstream ss;
+    ss << ROOT_PATH << std::filesystem::path::preferred_separator << "data" << std::filesystem::path::preferred_separator << "testtxt";
+    char* argg[3] = {"cli", "-index", strdup(ss.str().c_str())};
     std::unique_ptr<CommandLine> commandLine_uptr{new CommandLine(3, argg)};
-    auto expectContext = "C:\\Users\\SPAK\\UlakTask\\data\\testtxt";
+    auto expectContext = ss.str().c_str();
     commandLine_uptr->parse();
     std::string value = commandLine_uptr->getContext();
     ASSERT_STREQ(value.c_str(), expectContext);

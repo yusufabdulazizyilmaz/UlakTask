@@ -4,22 +4,19 @@
 #include "gtest/gtest.h"
 #include "src/fileAnalyzer/FileAnalyzer.h"
 
-struct FileAnalyzerTest : public testing::Test {
-    std::unique_ptr<FileAnalyzer> fileAnalyzer_uptr;
-
-    FileAnalyzerTest()
-            :fileAnalyzer_uptr(new FileAnalyzer("C:\\Users\\SPAK\\UlakTask\\data\\testtxt")) { }
-};
-
-TEST_F(FileAnalyzerTest, getlibrary)
+TEST(FileAnalyzer, getlibrary)
 {
+    // Arrange
+    std::stringstream ss;
+    ss << ROOT_PATH << std::filesystem::path::preferred_separator << "data" << std::filesystem::path::preferred_separator << "testtxt";
+    FileAnalyzer fileAnalyzer(ss.str());
     // Act
-    std::string value = fileAnalyzer_uptr->getLibrary();
+    std::string value = fileAnalyzer.getLibrary();
     // Assert
-    ASSERT_STREQ(value.c_str(), "C:\\Users\\SPAK\\UlakTask\\data\\testtxt");
+    ASSERT_STREQ(value.c_str(), strdup(ss.str().c_str()));
 }
 
-/*TEST_F(FileAnalyzerTest, getTxtVector)
+/*TEST(FileAnalyzerTest, getTxtVector)
 {
     // Act
     /*std::vector<std::string> expectedVec{"/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a1/a2.txt",

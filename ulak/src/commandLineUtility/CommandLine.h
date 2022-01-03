@@ -7,7 +7,6 @@
 
 #include <string>
 #include <vector>
-//#include <filesystem>  //for current_path
 
 enum class COMMAND_TYPE {
     INDEX, SEARCH
@@ -15,8 +14,6 @@ enum class COMMAND_TYPE {
 
 class CommandLine {
 public:
-    //inline static const std::string m_IndexedFile = std::filesystem::current_path().string() + "/invertedIndex.txt";
-    inline static const std::string m_IndexedFile = "C:\\Users\\SPAK\\UlakTask\\data\\invertedIndex.txt";
 
     CommandLine(int argc, char** argv);
 

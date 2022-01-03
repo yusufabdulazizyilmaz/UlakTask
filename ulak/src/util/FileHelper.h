@@ -8,6 +8,7 @@
 #include <fstream>
 #include <unordered_map>
 #include <map>
+#include <string>
 
 class FileHelper {
 public:
@@ -19,6 +20,7 @@ public:
     serialize(const std::unordered_map<std::string, std::map<std::string, int>>& indexedMap, std::string outTxt);
 
     static std::unordered_map<std::string, std::string> deSerialize(std::string outTxt);
+    static std::string getInvertedFilePath();
 };
 
 #endif //ULAK_FILEHELPER_H

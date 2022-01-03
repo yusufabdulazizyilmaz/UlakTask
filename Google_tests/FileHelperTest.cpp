@@ -3,11 +3,12 @@
 //
 #include <filesystem>
 #include "gtest/gtest.h"
-#include "src/fileHelper/FileHelper.h"
+#include "src/util/FileHelper.h"
 
 class FileHelperMultipleParametersTest1 : public ::testing::TestWithParam<std::string> {
 protected:
     FileHelper myFileHelper;
+
 };
 
 TEST_P(FileHelperMultipleParametersTest1, openReadnothrow)
@@ -17,13 +18,10 @@ TEST_P(FileHelperMultipleParametersTest1, openReadnothrow)
 }
 
 INSTANTIATE_TEST_CASE_P
-
 (
         openReadnothrow,
         FileHelperMultipleParametersTest1,
-        ::testing::Values("C:\\Users\\SPAK\\UlakTask\\data\\testtxt\\a1\\a3.txt",
-                "C:\\Users\\SPAK\\UlakTask\\data\\testtxt\\a2\\a21\\a3.txt",
-                "C:\\Users\\SPAK\\UlakTask\\data\\testtxt\\a3\\a2.txt"));
+        ::testing::Values(FileHelper::getInvertedFilePath()));
 
 class FileHelperMultipleParametersTest2 : public ::testing::TestWithParam<std::string> {
 protected:

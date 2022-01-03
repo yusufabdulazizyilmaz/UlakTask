@@ -20,11 +20,11 @@ int main(int argc, char** argv)
     case COMMAND_TYPE::INDEX: {
         FileAnalyzer fileAnalyzer(commendUtility.getContext());
         LibraryIndexer inversedIndex{fileAnalyzer};
-        FileHelper::serialize(inversedIndex.getInversedIndex(), CommandLine::m_IndexedFile);
+        FileHelper::serialize(inversedIndex.getInversedIndex(), FileHelper::getInvertedFilePath());
     }
         break;
     case COMMAND_TYPE::SEARCH:
-        LibrarySearcher{commendUtility.getContext(), CommandLine::m_IndexedFile};
+        LibrarySearcher{commendUtility.getContext(), FileHelper::getInvertedFilePath()};
         break;
     }
     return 0;

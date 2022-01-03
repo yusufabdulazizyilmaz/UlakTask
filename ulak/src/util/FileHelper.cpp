@@ -2,6 +2,7 @@
 // Created by SPAK on 1.01.2022.
 //
 
+#include <filesystem>
 #include "FileHelper.h"
 
 std::ifstream FileHelper::openReadFile(const std::string& fileName)
@@ -41,4 +42,9 @@ std::unordered_map<std::string, std::string> FileHelper::deSerialize(std::string
     while (ifs >> word >> innermap)
         retUnorderedMap[word] = std::move(innermap);
     return retUnorderedMap;
+}
+std::string FileHelper::getInvertedFilePath(){
+    std::stringstream ss;
+    ss << ROOT_PATH << std::filesystem::path::preferred_separator << "invertedIndex.txt";
+    return ss.str();
 }

@@ -3,6 +3,7 @@
 //
 
 #include <filesystem>
+#include <src/util/FileHelper.h>
 #include "CommandLine.h"
 #include "../exception/BadCommit.h"
 
@@ -36,7 +37,7 @@ void CommandLine::parse()
         throw BadCommit{"Invalid command."};
     if (command=="-index" and !std::filesystem::is_directory(m_context))
         throw BadCommit{"No such a library folder."};
-    if (command=="-search" and !std::filesystem::exists(m_IndexedFile))
+    if (command=="-search" and !std::filesystem::exists(FileHelper::getInvertedFilePath()))
         throw BadCommit{"First should index any library folder."};
 
     m_command = command=="-index" ? COMMAND_TYPE::INDEX : COMMAND_TYPE::SEARCH;
