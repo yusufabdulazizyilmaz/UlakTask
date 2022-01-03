@@ -12,16 +12,17 @@
 class FileAnalyzer;
 
 class LibraryIndexer {
+    using hashstrmap = std::unordered_map<std::string, std::map<std::string, int>>;
 public:
     explicit LibraryIndexer(const FileAnalyzer& fileAnalyzer);
 
-    [[nodiscard]] const std::unordered_map<std::string, std::map<std::string, int>>& getInversedIndex() const;
+    [[nodiscard]] const hashstrmap& getInversedIndex() const;
 
 private:
-    [[nodiscard]] std::unordered_map<std::string, std::map<std::string, int>> indexLibrary();
+    [[nodiscard]] hashstrmap indexLibrary();
 
     const FileAnalyzer& m_fileAnalyzer;
-    std::unordered_map<std::string, std::map<std::string, int>> m_inversedIndex;
+    hashstrmap m_inversedIndex;
 };
 
 #endif //ULAK_LIBRARYINDEXER_H
