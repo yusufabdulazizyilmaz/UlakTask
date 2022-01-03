@@ -7,8 +7,10 @@
 #include "../exception/BadCommit.h"
 
 CommandLine::CommandLine(int argc, char** argv)
-        :m_argc{argc}, m_argv(argv)
+        :m_argc{argc}
 {
+    for(std::size_t i = 1; i < m_argc;++i)
+        m_argVec.push_back(std::move(argv[i]));
 }
 
 COMMAND_TYPE CommandLine::getCommand() const
@@ -27,8 +29,8 @@ void CommandLine::parse()
     if (m_argc!=3)
         throw BadCommit{"Invalid command line!"};
 
-    command = std::move(m_argv[1]);
-    m_context = std::move(m_argv[2]);
+    command = std::move(m_argVec[0]);
+    m_context = std::move(m_argVec[1]);
 
     if (command!="-index" and command!="-search")
         throw BadCommit{"Invalid command."};
