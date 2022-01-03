@@ -21,7 +21,7 @@ TEST_F(FileAnalyzerTest, getlibrary)
 TEST_F(FileAnalyzerTest, getTxtVector)
 {
     // Act
-    std::vector<std::string> expectedVec{"/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a1/a2.txt",
+    /*std::vector<std::string> expectedVec{"/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a1/a2.txt",
     "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a1/a3.txt",
     "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a1/za1.txt",
     "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a1/za4.txt",
@@ -39,7 +39,12 @@ TEST_F(FileAnalyzerTest, getTxtVector)
     "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a3/a3.txt",
     "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a3/a4.txt",
     "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a3.txt",
-    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a4.txt"};
+    "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a4.txt"};*/
+    
+    std::vector<std::string> expectedVec{"/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a1/a3.txt",
+                                         "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a1.txt",
+                                         "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a2/a21/a3.txt",
+                                         "/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt/a3/a2.txt"};
 
     auto txtFileVec = fileAnalyzer_uptr->getTxtFileVec();
     sort(begin(txtFileVec),end(txtFileVec));
