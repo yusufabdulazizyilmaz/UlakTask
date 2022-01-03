@@ -9,22 +9,22 @@
 #include "../fileAnalyzer/FileAnalyzer.h"
 
 LibraryIndexer::LibraryIndexer(const FileAnalyzer& fileAnalyzer)
-        :m_fileAnalyzer(fileAnalyzer)
+        :m_fileAnalyzer(std::move(fileAnalyzer))
 {
     m_inversedIndex = indexLibrary();
 }
 
-const std::unordered_map<std::string, std::map<std::string, int>>& LibraryIndexer::getInversedIndex() const
+const LibraryIndexer::hashstrmap& LibraryIndexer::getInversedIndex() const
 {
     return m_inversedIndex;
 }
 
-std::unordered_map<std::string, std::map<std::string, int>> LibraryIndexer::indexLibrary()
+LibraryIndexer::hashstrmap LibraryIndexer::indexLibrary()
 {
     for (const auto& txtFilepath: m_fileAnalyzer.getTxtFileVec()) {
         std::ifstream txtFile = FileHelper::openReadFile(txtFilepath.string());
         std::vector<std::string> svec{std::istream_iterator<std::string>{txtFile}, {}};
-        std::string referencePath = txtFilepath.string().substr(m_fileAnalyzer.getLibrary().length()+1);
+        std::string referencePath = std::move(txtFilepath.string().substr(m_fileAnalyzer.getLibrary().length()+1));
         for (const auto& word: svec) {
             ++m_inversedIndex[word][referencePath];
         }
