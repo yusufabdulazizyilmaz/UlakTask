@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include "LibrarySearcher.h"
-#include "../fileHelper/FileHelper.h"
+#include "../util/FileHelper.h"
 
 LibrarySearcher::LibrarySearcher(std::string searchWord, std::string invertedIndexPath)
         :m_searchWord{std::move(searchWord)}, m_invertedIndexPath{std::move(invertedIndexPath)}

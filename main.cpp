@@ -3,7 +3,7 @@
 #include "ulak/src/commandLineUtility/CommandLine.h"
 #include "ulak/src/exception/BadCommit.h"
 #include "ulak/src/indexer/LibraryIndexer.h"
-#include "ulak/src/fileHelper/FileHelper.h"
+#include "ulak/src/util/FileHelper.h"
 #include "ulak/src/searcher/LibrarySearcher.h"
 
 int main(int argc, char** argv)

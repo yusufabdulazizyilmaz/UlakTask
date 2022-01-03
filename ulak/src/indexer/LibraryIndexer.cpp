@@ -5,7 +5,7 @@
 #include <vector>
 #include <iterator>
 #include "LibraryIndexer.h"
-#include "../fileHelper/FileHelper.h"
+#include "../util/FileHelper.h"
 #include "../fileAnalyzer/FileAnalyzer.h"
 
 LibraryIndexer::LibraryIndexer(const FileAnalyzer& fileAnalyzer)
