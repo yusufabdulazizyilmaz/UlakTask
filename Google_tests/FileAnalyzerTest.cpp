@@ -8,7 +8,8 @@ TEST(FileAnalyzer, getlibrary)
 {
     // Arrange
     std::stringstream ss;
-    ss << ROOT_PATH << std::filesystem::path::preferred_separator << "data" << std::filesystem::path::preferred_separator << "testtxt";
+    ss << ROOT_PATH << static_cast<char>(std::filesystem::path::preferred_separator) << "data"
+       << static_cast<char>(std::filesystem::path::preferred_separator) << "testtxt";
     FileAnalyzer fileAnalyzer(ss.str());
     // Act
     std::string value = fileAnalyzer.getLibrary();

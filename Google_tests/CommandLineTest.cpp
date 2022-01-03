@@ -1,6 +1,7 @@
 //
 // Created by SPAK on 1.01.2022.
 //
+#include <filesystem>
 #include "gtest/gtest.h"
 #include "src/commandLineUtility/CommandLine.h"
 #include "src/exception/BadCommit.h"
@@ -22,8 +23,9 @@ TEST(CommandLineTestParse, not3argument2)
 TEST(CommandLineTestParse, valid3argument)
 {
     std::stringstream ss;
-    ss << ROOT_PATH << std::filesystem::path::preferred_separator << "data" << std::filesystem::path::preferred_separator << "testtxt";
-    char* argg[3] = {"cli", "-index" ,strdup(ss.str().c_str())};
+    ss << ROOT_PATH << static_cast<char>(std::filesystem::path::preferred_separator) << "data"
+       << static_cast<char>(std::filesystem::path::preferred_separator) << "testtxt";
+    char* argg[3] = {"cli", "-index", strdup(ss.str().c_str())};
     std::unique_ptr<CommandLine> commandLine_uptr{new CommandLine(3, argg)};
     EXPECT_NO_THROW(commandLine_uptr->parse());
 }
@@ -45,8 +47,10 @@ TEST(CommandLineTestParse, ValidCommand)
 TEST(CommandLineTestParse, notDirectory)
 {
     std::stringstream ss;
-    ss << ROOT_PATH << std::filesystem::path::preferred_separator << "data" << std::filesystem::path::preferred_separator << "testtxt" << std::filesystem::path::preferred_separator << "a1.txt";
-    char* argg[3] = {"cli", "-index" ,strdup(ss.str().c_str())};
+    ss << ROOT_PATH << static_cast<char>(std::filesystem::path::preferred_separator) << "data"
+       << static_cast<char>(std::filesystem::path::preferred_separator) << "testtxt"
+       << static_cast<char>(std::filesystem::path::preferred_separator) << "a1.txt";
+    char* argg[3] = {"cli", "-index", strdup(ss.str().c_str())};
     std::unique_ptr<CommandLine> commandLine_uptr{new CommandLine(3, argg)};
     EXPECT_THROW(commandLine_uptr->parse(), BadCommit);
 }
@@ -54,8 +58,9 @@ TEST(CommandLineTestParse, notDirectory)
 TEST(CommandLineTestParse, validDirectory)
 {
     std::stringstream ss;
-    ss << ROOT_PATH << std::filesystem::path::preferred_separator << "data" << std::filesystem::path::preferred_separator << "testtxt";
-    char* argg[3] = {"cli", "-index" ,strdup(ss.str().c_str())};
+    ss << ROOT_PATH << static_cast<char>(std::filesystem::path::preferred_separator) << "data"
+       << static_cast<char>(std::filesystem::path::preferred_separator) << "testtxt";
+    char* argg[3] = {"cli", "-index", strdup(ss.str().c_str())};
     std::unique_ptr<CommandLine> commandLine_uptr{new CommandLine(3, argg)};
     EXPECT_NO_THROW(commandLine_uptr->parse());
 }
@@ -63,7 +68,8 @@ TEST(CommandLineTestParse, validDirectory)
 TEST(CommandLineTestParse, validExistIndexedTxt)
 {
     std::stringstream ss;
-    ss << std::filesystem::current_path().string() << std::filesystem::path::preferred_separator << "invertedIndex.txt";
+    ss << static_cast<char>(std::filesystem::path::preferred_separator)
+       << static_cast<char>(std::filesystem::path::preferred_separator) << "invertedIndex.txt";
     char* argg[3] = {"cli", "-search", strdup(ss.str().c_str())};
     std::unique_ptr<CommandLine> commandLine_uptr{new CommandLine(3, argg)};
     EXPECT_NO_THROW(commandLine_uptr->parse());
@@ -72,7 +78,8 @@ TEST(CommandLineTestParse, validExistIndexedTxt)
 TEST(CommandLineTestParse, getContext)
 {
     std::stringstream ss;
-    ss << ROOT_PATH << std::filesystem::path::preferred_separator << "data" << std::filesystem::path::preferred_separator << "testtxt";
+    ss << ROOT_PATH << static_cast<char>(std::filesystem::path::preferred_separator) << "data"
+       << static_cast<char>(std::filesystem::path::preferred_separator) << "testtxt";
     char* argg[3] = {"cli", "-index", strdup(ss.str().c_str())};
     std::unique_ptr<CommandLine> commandLine_uptr{new CommandLine(3, argg)};
     auto expectContext = ss.str().c_str();

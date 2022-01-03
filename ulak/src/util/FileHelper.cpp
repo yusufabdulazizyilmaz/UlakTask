@@ -3,6 +3,7 @@
 //
 
 #include <filesystem>
+#include <iostream>
 #include "FileHelper.h"
 
 std::ifstream FileHelper::openReadFile(const std::string& fileName)
@@ -43,8 +44,10 @@ std::unordered_map<std::string, std::string> FileHelper::deSerialize(std::string
         retUnorderedMap[word] = std::move(innermap);
     return retUnorderedMap;
 }
-std::string FileHelper::getInvertedFilePath(){
+
+std::string FileHelper::getInvertedFilePath()
+{
     std::stringstream ss;
-    ss << ROOT_PATH << std::filesystem::path::preferred_separator << "invertedIndex.txt";
+    ss << ROOT_PATH << static_cast<char>(std::filesystem::path::preferred_separator) << "invertedIndex.txt";
     return ss.str();
 }
