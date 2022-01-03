@@ -5,6 +5,7 @@
 #ifndef ULAK_COMMANDLINE_H
 #define ULAK_COMMANDLINE_H
 #include <string>
+#include <vector>
 //#include <filesystem>  //for current_path
 
 enum class COMMAND_TYPE {
@@ -22,7 +23,7 @@ public:
     void parse();
 private:
     int m_argc;
-    char **m_argv;
+    std::vector<std::string> m_argVec;
     COMMAND_TYPE m_command;
     std::string m_context;
 };
