@@ -1,4 +1,3 @@
-#include <iostream>
 #include "ulak/src/fileAnalyzer/FileAnalyzer.h"
 #include "ulak/src/commandLineUtility/CommandLine.h"
 #include "ulak/src/exception/BadCommit.h"
@@ -17,13 +16,13 @@ int main(int argc, char** argv)
         return -1;
     }
     switch (commendUtility.getCommand()) {
-    case COMMAND_TYPE::INDEX: {
+    case CommandLine::COMMAND_TYPE::INDEX: {
         FileAnalyzer fileAnalyzer(commendUtility.getContext());
         LibraryIndexer inversedIndex{fileAnalyzer};
         FileHelper::serialize(inversedIndex.getInversedIndex(), FileHelper::getInvertedFilePath());
     }
         break;
-    case COMMAND_TYPE::SEARCH:
+    case CommandLine::COMMAND_TYPE::SEARCH:
         LibrarySearcher{commendUtility.getContext(), FileHelper::getInvertedFilePath()};
         break;
     }

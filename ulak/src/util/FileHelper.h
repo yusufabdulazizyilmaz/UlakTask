@@ -17,10 +17,10 @@ public:
     [[nodiscard]]static std::ofstream openWriteFile(const std::string& fileName);
 
     static void
-    serialize(const std::unordered_map<std::string, std::map<std::string, int>>& indexedMap, std::string outTxt);
+    serialize(const std::unordered_map<std::string, std::map<std::string, int>>& indexedMap, const std::string& outTxt);
 
-    static std::unordered_map<std::string, std::string> deSerialize(std::string outTxt);
-    static std::string getInvertedFilePath();
+    [[nodiscard]] static std::unordered_map<std::string, std::string> deSerialize(const std::string& outTxt);
+    [[nodiscard]] static std::string getInvertedFilePath();
 };
 
 #endif //ULAK_FILEHELPER_H

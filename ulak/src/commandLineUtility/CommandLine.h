@@ -8,18 +8,16 @@
 #include <string>
 #include <vector>
 
-enum class COMMAND_TYPE {
-    INDEX, SEARCH
-};
-
 class CommandLine {
 public:
-
+    enum class COMMAND_TYPE {
+        INDEX, SEARCH
+    };
     CommandLine(int argc, char** argv);
 
-    COMMAND_TYPE getCommand() const;
+    [[nodiscard]] COMMAND_TYPE getCommand() const;
 
-    const std::string& getContext() const;
+    [[nodiscard]] const std::string& getContext() const;
 
     void parse();
 

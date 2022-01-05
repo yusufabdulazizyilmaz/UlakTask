@@ -35,7 +35,6 @@ TEST_P(FileHelperMultipleParametersTest2, openReadthrow)
 }
 
 INSTANTIATE_TEST_CASE_P
-
 (
         openReadthrow,
         FileHelperMultipleParametersTest2,

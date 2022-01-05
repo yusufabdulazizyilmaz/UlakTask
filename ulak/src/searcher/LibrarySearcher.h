@@ -6,8 +6,6 @@
 #define ULAK_LIBRARYSEARCHER_H
 
 #include <string>
-#include <string_view>
-
 class LibrarySearcher {
 public:
     LibrarySearcher(std::string searchWord, std::string invertedIndexPath);
@@ -15,7 +13,7 @@ public:
 private:
     void search();
 
-    void splitWriter(std::string_view searchResult, const char& delimeter);
+    void splitWriter(const std::string_view& searchResult, const char& delimeter);
 
     std::string m_searchWord;
     std::string m_invertedIndexPath;

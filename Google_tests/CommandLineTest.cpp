@@ -87,29 +87,3 @@ TEST(CommandLineTestParse, getContext)
     std::string value = commandLine_uptr->getContext();
     ASSERT_STREQ(value.c_str(), expectContext);
 }
-
-/*int gArgc;
-char** gArgv;
-
-struct CommandLineTest : public testing::Test {
-    std::unique_ptr<CommandLine> commandLine_uptr;
-    CommandLineTest()
-            :commandLine_uptr(new CommandLine(gArgc,gArgv)) { }
-};*/
-
-/*TEST_F(CommandLineTest, getCommand){
-    auto expectCommand =COMMAND_TYPE::INDEX;
-    auto val= commandLine_uptr->getCommand();
-    EXPECT_EQ(val,expectCommand);
-}*/
-/*TEST_F(CommandLineTest, getContext){
-    auto expectContext ="/home/yusufyilmaz/Desktop/yusufgithub/UlakTask-firstbranch/data/testtxt";
-    ASSERT_STREQ(commandLine_uptr->getContext().c_str(),expectContext);
-}*/
-/*int main(int argc, char **argv)
-{
-    gArgc = argc;
-    gArgv = argv;
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}*/

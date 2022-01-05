@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <string_view>
 #include "LibrarySearcher.h"
 #include "../util/FileHelper.h"
 
@@ -21,7 +22,7 @@ void LibrarySearcher::search()
         std::cout << m_searchWord << "is not found! \n";
 }
 
-void LibrarySearcher::splitWriter(std::string_view searchResult, const char& delimeter)
+void LibrarySearcher::splitWriter(const std::string_view& searchResult, const char& delimeter)
 {
     for (std::size_t pos = 0; pos<searchResult.length();) {
         if (std::size_t idx = searchResult.find(delimeter, pos); idx!=std::string::npos) {

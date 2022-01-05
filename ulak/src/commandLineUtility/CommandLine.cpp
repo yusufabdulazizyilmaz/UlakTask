@@ -14,7 +14,7 @@ CommandLine::CommandLine(int argc, char** argv)
         m_argVec.push_back(std::move(argv[i]));
 }
 
-COMMAND_TYPE CommandLine::getCommand() const
+CommandLine::COMMAND_TYPE CommandLine::getCommand() const
 {
     return m_command;
 }

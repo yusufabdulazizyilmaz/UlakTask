@@ -22,8 +22,7 @@ std::ofstream FileHelper::openWriteFile(const std::string& fileName)
     return ofs;
 }
 
-void
-FileHelper::serialize(const std::unordered_map<std::string, std::map<std::string, int>>& indexedMap, std::string outTxt)
+void FileHelper::serialize(const std::unordered_map<std::string, std::map<std::string, int>>& indexedMap, const std::string& outTxt)
 {
     auto outputFileWriter = openWriteFile(outTxt);
     char delimeter = '|';
@@ -35,7 +34,7 @@ FileHelper::serialize(const std::unordered_map<std::string, std::map<std::string
     }
 }
 
-std::unordered_map<std::string, std::string> FileHelper::deSerialize(std::string outTxt)
+std::unordered_map<std::string, std::string> FileHelper::deSerialize(const std::string& outTxt)
 {
     auto ifs = openReadFile(outTxt);
     std::string word, innermap;
