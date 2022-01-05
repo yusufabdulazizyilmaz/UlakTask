@@ -10,5 +10,5 @@ Here, the data structure std::unordered_map<std::string, std::map<std::string, i
 
 In the FileHelper class, the data structure holding the indexing is written to the invertedIndex.txt file with the serialize function.
 
-In the LibrarySearcher class, the data in the invertedIndex.txt file is transferred to the std::unordered_map<std::string, std::string> data structure With the deserialize function in the FileHelper class and the search is performed.
+In the LibrarySearcher class, the data in the invertedIndex.txt file is transferred to the std::unordered_map<std::string, std::string> data structure with the deserialize function in the FileHelper class and the search is performed.
 
