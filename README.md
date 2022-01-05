@@ -1,4 +1,5 @@
 # UlakTask
+The aim of this project is to develop an efficient document search software for given a library of documents and to index these documents for future search operations.
 
 To download project, ```sh  git clone https://github.com/yusufabdulazizyilmaz/UlakTask.git```
 
