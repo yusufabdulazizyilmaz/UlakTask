@@ -1,5 +1,18 @@
 # UlakTask
+
+## Overview
+
 The aim of this project is to develop an efficient document search software for given a library of documents and to index these documents for future search operations.
+
+
+## Installation
+
+### Pre-requist
+cmake >= 3.15
+
+make
+
+### Build
 
 To download project, 
 ```sh  
@@ -11,6 +24,7 @@ In order to build,
 cd UlakTask/ && . build.sh
 ```
 
+## Run
 In order to index given library folder, 
 ```sh 
 cli -index <path_to_library>
